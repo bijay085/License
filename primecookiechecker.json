@@ -2,5 +2,11 @@
     "abcd1234": {
         "serial_number": "PHVVLB21WCD2IF",
         "valid": true
+    },
+    
+    "abcd1234": {
+    "serial_number": "0000-0010-4005-4559-2301-9453-93",
+    "valid": true
     }
 }
+
