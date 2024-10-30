@@ -13,5 +13,10 @@
         "processor_id": "0000000000000000",
         "serial_number": "0000-0009-2418-9375-0790-6967-93", 
         "valid": true
+    },
+    "hd739bs419bs": {
+        "processor_id": "BFEBFBFF000906E9",
+        "serial_number": "0000000000000000", 
+        "valid": true
     }
 }
