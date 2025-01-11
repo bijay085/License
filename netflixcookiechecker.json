@@ -18,5 +18,10 @@
         "processor_id": "BFEBFBFF000406F1",
         "serial_number": "0000000000000000", 
         "valid": true
+    },
+    "1month211ok": {
+        "processor_id": "BFEBFBFF000706A8",
+        "serial_number": "R937NBLP00OFSDMB", 
+        "valid": true
     }
 }
