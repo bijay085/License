@@ -2,7 +2,7 @@
     "7938bdj63n03": {
         "processor_id": "BFEBFBFF000806EB",
         "serial_number": "PHVVLB21WCD2IF",
-        "valid": true
+        "valid": false
     },
     "bhs79m2793nd": {
         "processor_id": "0F8BFBFF000406F1",
@@ -17,7 +17,7 @@
     "hdg34dhb62": {
         "processor_id": "BFEBFBFF000406F1",
         "serial_number": "0000000000000000", 
-        "valid": true
+        "valid": false
     },
     "1month211ok": {
         "processor_id": "BFEBFBFF000706A8",
