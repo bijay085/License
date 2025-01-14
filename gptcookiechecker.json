@@ -8,5 +8,10 @@
         "processor_id": "BFEBFBFF000406F1",
         "serial_number": "BFEBFBFF000406F1",
         "valid": true
+    },
+    "bagd637bs65": {
+        "processor_id": "BFEBFBFF00090672",
+        "serial_number": "000000000000000",
+        "valid": true
     }
 }
