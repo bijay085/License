@@ -5,8 +5,7 @@
         "valid": true
     },
     "738hgdbdu73h": {
-        "processor_id": "0F8BFBFF000406F1",
-        "serial_number": "0000-0012-5021-3439-6072-5778-44", 
-        "valid": true
-    }
+        "processor_id": "BFEBFBFF000406F1",
+        "serial_number": "0000000000000000", 
+        "valid": false
 }
