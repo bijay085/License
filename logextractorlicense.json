@@ -13,5 +13,9 @@
         "processor_id": "178BFBFF00860F01",
         "serial_number": "PF32HSEB",
         "valid": true
-    }
+    },
+    "sachecl27463": {
+        "processor_id": "BFEBFBFF000906E9",
+        "serial_number": "0000000000000000",
+        "valid": true
 }
