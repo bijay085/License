@@ -18,5 +18,10 @@
         "processor_id": "BFEBFBFF000806D1",
         "serial_number": "R625NRCX006U60MB", 
         "valid": true
+    },
+    "rosstg0802month1": {
+        "processor_id": "078BFBFF00A10F11",
+        "serial_number": "0000000000000000", 
+        "valid": true
     }
 }
