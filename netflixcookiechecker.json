@@ -23,9 +23,14 @@
         "processor_id": "1F8BFBFF000306A0",
         "serial_number": "0000000000000000", 
         "valid": true
-    },
+    }, 
     "leangphallalifetime": {
         "processor_id": "BFEBFBFF000406F1",
+        "serial_number": "0000000000000000", 
+        "valid": true
+    },
+    "phoenix100cookies": {
+        "processor_id": "078BFBFF00A00F11",
         "serial_number": "0000000000000000", 
         "valid": true
     }
