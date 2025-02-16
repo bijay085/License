@@ -13,5 +13,10 @@
         "processor_id": "178BFBFF00860F01",
         "serial_number": "PF32HSEB",
         "valid": true
+    },
+    "kaizenlifetime3782": {
+        "processor_id": "078BFBFF00A20F12",
+        "serial_number": "0000000000000000",
+        "valid": true
     }
 }
