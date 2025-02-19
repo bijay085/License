@@ -4,26 +4,6 @@
         "serial_number": "PHVVLB21WCD2IF",
         "valid": true
     },
-    "leang123638": {
-        "processor_id": "BFEBFBFF000406F1",
-        "serial_number": "BFEBFBFF000406F1",
-        "valid": true
-    },
-    "bagd637bs65": {
-        "processor_id": "BFEBFBFF000406E3",
-        "serial_number": "1TSPYM2/CN1296382C097B",
-        "valid": true
-    },
-    "bu3867dbski": {
-        "processor_id": "BFEBFBFF000806D1",
-        "serial_number": "R625NRCX006U60MB", 
-        "valid": true 
-    },
-    "rosstg0802month1": {
-        "processor_id": "078BFBFF00A10F11",
-        "serial_number": "0000000000000000", 
-        "valid": true
-    },
     "sachel1638": {
         "processor_id": "BFEBFBFF000906E9",
         "serial_number": "0000000000000000", 
@@ -32,11 +12,6 @@
     "kaizenlifetime3782": {
         "processor_id": "078BFBFF00A20F12",
         "serial_number": "0000000000000000",
-        "valid": true
-    },
-    "ronnine7383": {
-        "processor_id": "078BFBFF00A00F11",
-        "serial_number": "0000000000000000", 
         "valid": true
     }
 }
