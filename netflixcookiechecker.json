@@ -21,31 +21,9 @@
     "lifetime": true,
     "valid": true
   },
-  "uptou837382": {
-    "customer-name": "Useruptou",
-    "processor_id": "178BFBFF00A50F00",
-    "serial_number": "07C5213_N61E026271",
-    "trail": false,
-    "billing-date": "2023-01-01",
-    "next-billing-date": "2050-01-01",
-    "universal-license": false,
-    "lifetime": true,
-    "valid": true
-  },
   "leangphallalifetime": {
     "customer-name": "LeangPhalla",
     "processor_id": "BFEBFBFF000406F1",
-    "serial_number": "0000000000000000",
-    "trail": false,
-    "billing-date": "2023-01-01",
-    "next-billing-date": "2050-01-01",
-    "universal-license": false,
-    "lifetime": true,
-    "valid": true
-  },
-  "lucifer100cookies": {
-    "customer-name": "Ronnie",
-    "processor_id": "078BFBFF00A00F11",
     "serial_number": "0000000000000000",
     "trail": false,
     "billing-date": "2023-01-01",
