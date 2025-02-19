@@ -1,37 +1,52 @@
 {
-    "7938bdj63n03": {
-        "processor_id": "BFEBFBFF000806EB",
-        "serial_number": "PHVVLB21WCD2IF",
-        "valid": true
-    },
-    "bhs79m2793nd": {
-        "processor_id": "BFEBFBFF000806D1",
-        "serial_number": "0000000000000000", 
-        "valid": true
-    },
-    "1month211ok": {
-        "processor_id": "BFEBFBFF000706A8",
-        "serial_number": "R937NBLP00OFSDMB", 
-        "valid": false
-    },
-    "uptou837382": {
-        "processor_id": "178BFBFF00A50F00",
-        "serial_number": "07C5213_N61E026271", 
-        "valid": true
-    },
-    "hydg3763hs9": {
-        "processor_id": "1F8BFBFF000306A0",
-        "serial_number": "0000000000000000", 
-        "valid": true
-    }, 
-    "leangphallalifetime": {
-        "processor_id": "BFEBFBFF000406F1",
-        "serial_number": "0000000000000000", 
-        "valid": true
-    },
-    "lucifer100cookies": {
-        "processor_id": "078BFBFF00A00F11",
-        "serial_number": "0000000000000000", 
-        "valid": true
-    }
+  "7938bdj63n03": {
+    "customer-name": "Lucifer",
+    "processor_id": "BFEBFBFF000806EB",
+    "serial_number": "PHVVLB21WCD2IF",
+    "trail": false,
+    "billing-date": "2023-01-01",
+    "next-billing-date": "2050-01-01",
+    "lifetime": true,
+    "valid": true
+  },
+  "bhs79m2793nd": {
+    "customer-name": "Panku",
+    "processor_id": "BFEBFBFF000806D1",
+    "serial_number": "0000000000000000",
+    "trail": false,
+    "billing-date": "2023-01-01",
+    "next-billing-date": "2050-01-01",
+    "lifetime": true,
+    "valid": true
+  },
+  "uptou837382": {
+    "customer-name": "Useruptou",
+    "processor_id": "178BFBFF00A50F00",
+    "serial_number": "07C5213_N61E026271",
+    "trail": false,
+    "billing-date": "2023-01-01",
+    "next-billing-date": "2050-01-01",
+    "lifetime": true,
+    "valid": true
+  },
+  "leangphallalifetime": {
+    "customer-name": "LeangPhalla",
+    "processor_id": "BFEBFBFF000406F1",
+    "serial_number": "0000000000000000",
+    "trail": false,
+    "billing-date": "2023-01-01",
+    "next-billing-date": "2050-01-01",
+    "lifetime": true,
+    "valid": true
+  },
+  "lucifer100cookies": {
+    "customer-name": "Ronnie",
+    "processor_id": "078BFBFF00A00F11",
+    "serial_number": "0000000000000000",
+    "trail": false,
+    "billing-date": "2023-01-01",
+    "next-billing-date": "2050-01-01",
+    "lifetime": true,
+    "valid": true
+  }
 }
