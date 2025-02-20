@@ -7,7 +7,7 @@
     "billing-date": "2023-01-01",
     "next-billing-date": "2025-02-20",
     "universal-license": false,
-    "lifetime": false,
+    "lifetime": true,
     "valid": true
   },
   "bhs79m2793nd": {
