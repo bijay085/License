@@ -20,5 +20,16 @@
     "universal-license": false,
     "lifetime": true,
     "valid": true
+  },
+    "leang123point": {
+      "customer-name": "LeangPhalla",
+      "processor_id": "BFEBFBFF000406F1",
+      "serial_number": "0000000000000000",
+      "trail": false,
+      "billing-date": "2023-01-01",
+      "next-billing-date": "2050-01-01",
+      "universal-license": false,
+      "lifetime": true,
+      "valid": true
   }
 }
