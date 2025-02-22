@@ -31,5 +31,16 @@
     "universal-license": false,
     "lifetime": true,
     "valid": true
+  },
+  "BlackPanther206": {
+    "customer-name": "BlackPanther",
+    "processor_id": "BFEBFBFF000906A4",
+    "serial_number": "ZDJ06MT00770",
+    "trail": false,
+    "billing-date": "2023-01-01",
+    "next-billing-date": "2050-01-01",
+    "universal-license": false,
+    "lifetime": true,
+    "valid": true
   }
 }
