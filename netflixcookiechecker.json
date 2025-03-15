@@ -42,5 +42,16 @@
     "universal-license": false,
     "lifetime": false,
     "valid": true
+  },
+  "Byteconfig7363": {
+    "customer-name": "Byteconfig",
+    "processor_id": "178BFBFF00810F81",
+    "serial_number": "NBHVT110062200EA867600",
+    "trail": false,
+    "billing-date": "2023-01-01",
+    "next-billing-date": "2025-04-15",
+    "universal-license": false,
+    "lifetime": true,
+    "valid": true
   }
 }
