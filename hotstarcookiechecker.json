@@ -7,7 +7,7 @@
         "billing-date": "2023-01-01",
         "next-billing-date": "2025-03-18",
         "universal-license": false,
-        "lifetime": false,
+        "lifetime": true,
         "valid": true
     },
     "gd638hd73h": {
