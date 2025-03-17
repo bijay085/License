@@ -1,8 +1,13 @@
 {
-    "abcd1234": {
-        "serial_number": "NBQQV11005442851AE3400",
-        "valid": true
-    }
+  "7938bdj63n03": {
+    "customer-name": "Lucifer",
+    "processor_id": "BFEBFBFF000B0671",
+    "serial_number": "NBQQV11005442851AE3400",
+    "trail": false,
+    "billing-date": "2023-01-01",
+    "next-billing-date": "2025-02-20",
+    "universal-license": true,
+    "lifetime": true,
+    "valid": true
+  }
 }
-
-
