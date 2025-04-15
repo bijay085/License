@@ -42,5 +42,16 @@
     "universal-license": false,
     "lifetime": false,
     "valid": true
+  },
+  "97309d9308jdjap": {
+    "customer-name": "Cyber",
+    "processor_id": "178BFBFF000406F1",
+    "serial_number": "0000000000000000",
+    "trail": false,
+    "billing-date": "2025-04-15",
+    "next-billing-date": "2025-05-15",
+    "universal-license": false,
+    "lifetime": false,
+    "valid": true
   }
 }
