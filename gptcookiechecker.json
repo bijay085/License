@@ -13,5 +13,15 @@
         "processor_id": "078BFBFF00A20F12",
         "serial_number": "0000000000000000",
         "valid": true
+    },
+    "97309380982": {
+        "processor_id": "178BFBFF000406F1",
+        "serial_number": "0000000000000000",
+        "valid": true
+    },
+    "ronine": {
+        "processor_id": "178BFBFF00870F10",
+        "serial_number": "0000000000000000",
+        "valid": true
     }
 }
