@@ -5,7 +5,7 @@
     "serial_number": "NBQQV11005442851AE3400",
     "trail": false,
     "billing-date": "2023-01-01",
-    "next-billing-date": "2025-02-20",
+    "next-billing-date": "2025-05-06",
     "universal-license": true,
     "lifetime": false,
     "valid": true
@@ -15,7 +15,7 @@
     "processor_id": "078BFBFF00830F10",
     "serial_number": "0000000000000000",
     "trail": true,
-    "billing-date": "2023-05-03",
+    "billing-date": "2025-05-03",
     "next-billing-date": "2025-05-06",
     "universal-license": false,
     "lifetime": true,
