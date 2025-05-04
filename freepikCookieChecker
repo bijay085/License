@@ -12,12 +12,12 @@
   },
   "kjhkhu9383": {
     "customer-name": "hasanOGM",
-    "processor_id": "078BFBFF00870F10",
+    "processor_id": "078BFBFF00830F10",
     "serial_number": "0000000000000000",
     "trail": true,
     "billing-date": "2023-05-03",
     "next-billing-date": "2025-05-06",
-    "universal-license": true,
+    "universal-license": false,
     "lifetime": false,
     "valid": true
   }
