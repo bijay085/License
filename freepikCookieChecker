@@ -18,7 +18,7 @@
     "billing-date": "2023-05-03",
     "next-billing-date": "2025-05-06",
     "universal-license": false,
-    "lifetime": false,
+    "lifetime": true,
     "valid": true
   }
 }
