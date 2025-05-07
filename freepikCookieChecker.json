@@ -7,7 +7,7 @@
     "billing-date": "2023-01-01",
     "next-billing-date": "2025-05-10",
     "universal-license": true,
-    "lifetime": false,
+    "lifetime": true,
     "valid": true
   },
   "kjhkhu9383": {
@@ -16,7 +16,7 @@
     "serial_number": "0000000000000000",
     "trial": true,
     "billing-date": "2025-05-03",
-    "next-billing-date": "2025-05-07",
+    "next-billing-date": "2025-05-09",
     "universal-license": false,
     "lifetime": false,
     "valid": true
