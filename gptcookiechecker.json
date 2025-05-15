@@ -6,7 +6,7 @@
         "trail": false,
         "billing-date": "2023-01-01",
         "next-billing-date": "2025-02-20",
-        "universal-license": true,
+        "universal-license": false,
         "lifetime": true,
         "valid": true
     },
@@ -17,7 +17,7 @@
         "trail": false,
         "billing-date": "2023-01-01",
         "next-billing-date": "2025-02-20",
-        "universal-license": true,
+        "universal-license": false,
         "lifetime": true,
         "valid": true
     },
@@ -63,6 +63,6 @@
         "next-billing-date": "2050-05-14",
         "universal-license": false,
         "lifetime": false,
-        "valid": true
+        "valid": false
     }
 }
