@@ -32,4 +32,15 @@
         "lifetime": false,
         "valid": true
     }
+    "1daytestbaby": {
+        "customer-name": "Axon",
+        "processor_id": "078BFBFF00A00F11",
+        "serial_number": "0000000000000000",
+        "trial": true,
+        "billing-date": "2025-05-16",
+        "next-billing-date": "2050-05-17",
+        "universal-license": false,
+        "lifetime": false,
+        "valid": true
+    }
 }
