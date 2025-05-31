@@ -31,5 +31,16 @@
         "universal-license": false,
         "lifetime": false,
         "valid": true
+    },
+    "7hd80j37dh73d": {
+        "customer-name": "duylinh011",
+        "processor_id": "BFEBFBFF000406F1",
+        "serial_number": "0000000000000000",
+        "trial": false,
+        "billing-date": "2025-05-31",
+        "next-billing-date": "2025-07-01",
+        "universal-license": false,
+        "lifetime": false,
+        "valid": true
     }
 }
