@@ -31,27 +31,5 @@
     "universal-license": false,
     "lifetime": true,
     "valid": true
-  },
-  "rossCookiePayment": {
-    "customer-name": "Ross",
-    "processor_id": "078BFBFF00A60F12",
-    "serial_number": "0000000000000000",
-    "trail": false,
-    "billing-date": "2023-01-01",
-    "next-billing-date": "2025-04-15",
-    "universal-license": false,
-    "lifetime": false,
-    "valid": true
-  },
-  "97309d9308jdjap": {
-    "customer-name": "Cyber",
-    "processor_id": "BFEBFBFF000906EA",
-    "serial_number": "0000000000000000",
-    "trail": false,
-    "billing-date": "2025-04-15",
-    "next-billing-date": "2025-05-15",
-    "universal-license": false,
-    "lifetime": false,
-    "valid": true
   }
 }
