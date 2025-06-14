@@ -10,25 +10,14 @@
         "lifetime": true,
         "valid": true
     },
-    "bhs79m2793nd": {
-        "customer-name": "Panku",
-        "processor_id": "BFEBFBFF000806D1",
+    "azure0943034jdkd": {
+        "customer-name": "Tgchannel",
+        "processor_id": "0000000000000000",
         "serial_number": "0000000000000000",
         "trial": false,
-        "billing-date": "2023-01-01",
-        "next-billing-date": "2050-01-01",
-        "universal-license": false,
-        "lifetime": false,
-        "valid": true
-    },
-    "panku12345": {
-        "customer-name": "PankuRDP",
-        "processor_id": "BFEBFBFF00050654",
-        "serial_number": "0000000000000000",
-        "trial": false,
-        "billing-date": "2023-01-01",
-        "next-billing-date": "2050-01-01",
-        "universal-license": false,
+        "billing-date": "2025-06-14",
+        "next-billing-date": "2050-07-20",
+        "universal-license": true,
         "lifetime": false,
         "valid": true
     }
