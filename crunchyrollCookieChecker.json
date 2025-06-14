@@ -9,5 +9,16 @@
         "universal-license": false,
         "lifetime": true,
         "valid": true
+    },
+    "crunchyroll9890383": {
+        "customer-name": "TgChannel",
+        "processor_id": "0000000000000000",
+        "serial_number": "0000000000000000",
+        "trial": false,
+        "billing-date": "2025-06-14",
+        "next-billing-date": "2025-07-20",
+        "universal-license": true,
+        "lifetime": false,
+        "valid": true
     }
 }
