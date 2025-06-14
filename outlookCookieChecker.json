@@ -43,14 +43,14 @@
         "lifetime": false,
         "valid": true
     },
-    "1daytest86484": {
-        "customer-name": "anoz",
+    "outlook73899363gs": {
+        "customer-name": "TgChannel",
         "processor_id": "0000000000000000",
-        "serial_number": "0000-0013-7127-6908-6938-5182-27",
+        "serial_number": "0000000000000000",
         "trial": true,
-        "billing-date": "2025-06-03",
-        "next-billing-date": "2025-06-05",
-        "universal-license": false,
+        "billing-date": "2025-06-14",
+        "next-billing-date": "2025-07-20",
+        "universal-license": true,
         "lifetime": false,
         "valid": true
     }
