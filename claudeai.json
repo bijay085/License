@@ -20,5 +20,16 @@
         "universal-license": false,
         "lifetime": true,
         "valid": true
+    },
+    "lifetime02093": {
+        "customer-name": "leangPhalla71",
+        "processor_id": "BFEBFBFF000B0671",
+        "serial_number": "0000000000000000",
+        "trial": false,
+        "billing-date": "2025-05-05",
+        "next-billing-date": "2030-02-20",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
     }
 }
