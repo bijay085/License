@@ -10,17 +10,6 @@
     "lifetime": true,
     "valid": true
   },
-  "hdk8j390dh93": {
-    "customer-name": "Anoz",
-    "processor_id": "0000000000000000",
-    "serial_number": "000000000000000000",
-    "trail": true,
-    "billing-date": "2025-06-16",
-    "next-billing-date": "2025-06-18",
-    "universal-license": false,
-    "lifetime": false,
-    "valid": true
-  },
   "spotify839838": {
     "customer-name": "TgChannel",
     "processor_id": "000000000000000000",
