@@ -10,7 +10,7 @@
         "lifetime": false,
         "valid": true
     },
-    "abcd1234": {
+    "leangh739873983": {
         "customer-name": "leangPhalla71",
         "processor_id": "BFEBFBFF000406F1",
         "serial_number": "0000000000000000",
@@ -19,6 +19,17 @@
         "next-billing-date": "2030-02-20",
         "universal-license": false,
         "lifetime": true,
+        "valid": true
+    },
+    "hailuoai987e9893": {
+        "customer-name": "TgChanenl",
+        "processor_id": "0000000000000000",
+        "serial_number": "0000000000000000",
+        "trial": false,
+        "billing-date": "2025-06-18",
+        "next-billing-date": "2025-07-20",
+        "universal-license": true,
+        "lifetime": false,
         "valid": true
     }
 }
