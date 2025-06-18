@@ -9,16 +9,5 @@
     "universal-license": true,
     "lifetime": true,
     "valid": true
-  },
-  "1daytest": {
-    "customer-name": "Gamerz",
-    "processor_id": "178BFBFF00860F01",
-    "serial_number": "0000000000000000",
-    "trail": true,
-    "billing-date": "2025-06-04",
-    "next-billing-date": "2025-06-06",
-    "universal-license": false,
-    "lifetime": false,
-    "valid": true
   }
 }
