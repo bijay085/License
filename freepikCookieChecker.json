@@ -21,6 +21,17 @@
         "lifetime": true,
         "valid": true
     },
+    "7383d9jd9893": {
+        "customer-name": "leangPhalla71",
+        "processor_id": "BFEBFBFF000B0671",
+        "serial_number": "0000000000000000",
+        "trial": false,
+        "billing-date": "2025-06-21",
+        "next-billing-date": "2030-02-20",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
+    },
     "freepik0490info3": {
         "customer-name": "TgChannel",
         "processor_id": "0000000000000000",
