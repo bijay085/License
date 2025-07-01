@@ -36,7 +36,7 @@
         "customer-name": "Samar",
         "processor_id": "078BFBFF00A00F11",
         "serial_number": "0000000000000000",
-        "trail": false,
+        "trail": true,
         "billing-date": "2025-06-13",
         "next-billing-date": "2025-07-20",
         "universal-license": false,
