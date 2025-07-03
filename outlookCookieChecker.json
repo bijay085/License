@@ -15,9 +15,9 @@
         "processor_id": "BFEBFBFF000406F1",
         "serial_number": "0000000000000000",
         "trial": false,
-        "billing-date": "2025-05-31",
-        "next-billing-date": "2025-07-01",
-        "universal-license": false,
+        "billing-date": "2025-07-03",
+        "next-billing-date": "2025-08-05",
+        "universal-license": true,
         "lifetime": false,
         "valid": true
     },
