@@ -9,5 +9,16 @@
     "universal-license": true,
     "lifetime": true,
     "valid": true
+  },
+  "peacocktv73829": {
+    "customer-name": "TgChannel",
+    "processor_id": "0000000000000000",
+    "serial_number": "0000000000000000000",
+    "trail": false,
+    "billing-date": "2025-07-06",
+    "next-billing-date": "2025-08-15",
+    "universal-license": true,
+    "lifetime": false,
+    "valid": true
   }
 }
