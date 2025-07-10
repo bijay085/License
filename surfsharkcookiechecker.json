@@ -1,7 +1,13 @@
 {
-    "bijay123": {
-        "processor_id": "BFEBFBFF000806EB",
-        "serial_number": "PHVVLB21WCD2IF",
+    "7938bdj63n03": {
+        "customer-name": "Lucifer",
+        "processor_id": "BFEBFBFF000B0671",
+        "serial_number": "NHQQVSA00344205AD63400",
+        "trial": false,
+        "billing-date": "2023-01-01",
+        "next-billing-date": "2025-02-20",
+        "universal-license": false,
+        "lifetime": true,
         "valid": true
     }
 }
