@@ -4,8 +4,19 @@
         "processor_id": "BFEBFBFF000B0671",
         "serial_number": "NHQQVSA00344205AD63400",
         "trial": false,
-        "billing-date": "2023-01-01",
+        "billing-date": "2025-01-01",
         "next-billing-date": "2025-02-20",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
+    },
+    "grok87893983": {
+        "customer-name": "TgChannel",
+        "processor_id": "00000000000000000",
+        "serial_number": "00000000000000000",
+        "trial": false,
+        "billing-date": "2025-07-11",
+        "next-billing-date": "2025-9-20",
         "universal-license": false,
         "lifetime": true,
         "valid": true
