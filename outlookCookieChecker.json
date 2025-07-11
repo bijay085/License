@@ -39,7 +39,18 @@
         "trial": false,
         "billing-date": "2025-07-03",
         "next-billing-date": "2025-08-05",
-        "universal-license": true,
+        "universal-license": false,
+        "lifetime": false,
+        "valid": true
+    },
+    "dlkjhe87kjf93sjpo": {
+        "customer-name": "duylinh3",
+        "processor_id": "BFEBFBFF000406F1",
+        "serial_number": "0000000000000000",
+        "trial": true,
+        "billing-date": "2025-07-12",
+        "next-billing-date": "2025-07-14",
+        "universal-license": false,
         "lifetime": false,
         "valid": true
     }
