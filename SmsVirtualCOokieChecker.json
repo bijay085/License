@@ -20,5 +20,16 @@
         "universal-license": true,
         "lifetime": true,
         "valid": true
+    },
+    "LeangLifetime284": {
+        "customer-name": "Leang",
+        "processor_id": "BFEBFBFF000406F1",
+        "serial_number": "0000000000000000",
+        "trail": false,
+        "billing-date": "2025-07-23",
+        "next-billing-date": "2025-04-15",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
     }
 }
