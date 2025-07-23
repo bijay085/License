@@ -10,7 +10,7 @@
         "lifetime": true,
         "valid": true
     },
-    "ulp89080983kdh9u9": {
+    "sms8762982hdiu93": {
         "customer-name": "TgChannel",
         "processor_id": "0000000000000000",
         "serial_number": "0000000000000000",
@@ -18,7 +18,7 @@
         "billing-date": "2025-06-14",
         "next-billing-date": "2025-09-20",
         "universal-license": true,
-        "lifetime": false,
+        "lifetime": true,
         "valid": true
     }
 }
