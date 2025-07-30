@@ -34,11 +34,11 @@
     },
     "skshjkd330i3jd": {
         "customer-name": "Samar",
-        "processor_id": "178BFBFF00810F81",
-        "serial_number": "0000000000000000",
+        "processor_id": "BFEBFBFF000806E9",
+        "serial_number": "PGDUE00WBB7098",
         "trail": true,
-        "billing-date": "2025-06-13",
-        "next-billing-date": "2025-07-20",
+        "billing-date": "2025-07-30",
+        "next-billing-date": "2025-08-1",
         "universal-license": false,
         "lifetime": false,
         "valid": true
