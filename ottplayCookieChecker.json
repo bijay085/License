@@ -20,5 +20,16 @@
         "universal-license": true,
         "lifetime": false,
         "valid": true
+    },
+    "panku1243223321": {
+        "customer-name": "Panku",
+        "processor_id": "BFEBFBFF000806D1",
+        "serial_number": "R625NRCX006U60MB",
+        "trial": false,
+        "billing-date": "2025-07-31",
+        "next-billing-date": "2025-10-20",
+        "universal-license": false,
+        "lifetime": false,
+        "valid": true
     }
 }
