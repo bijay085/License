@@ -40,7 +40,7 @@
         "billing-date": "2025-07-30",
         "next-billing-date": "2025-08-1",
         "universal-license": false,
-        "lifetime": false,
+        "lifetime": true,
         "valid": true
     }
 }
