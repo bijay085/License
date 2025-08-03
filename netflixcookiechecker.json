@@ -42,5 +42,16 @@
     "universal-license": true,
     "lifetime": false,
     "valid": true
+  },
+  "skshjkd330i3jd": {
+    "customer-name": "Samar",
+    "processor_id": "BFEBFBFF000806E9",
+    "serial_number": "PGDUE00WBB7098",
+    "trail": true,
+    "billing-date": "2025-07-30",
+    "next-billing-date": "2025-08-1",
+    "universal-license": false,
+    "lifetime": true,
+    "valid": true
   }
 }
