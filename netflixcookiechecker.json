@@ -53,5 +53,16 @@
     "universal-license": false,
     "lifetime": true,
     "valid": true
+  },
+  "1daytest627282": {
+    "customer-name": "Samkhan",
+    "processor_id": "BFEBFBFF000806E9",
+    "serial_number": "PGDUE00WBB7098",
+    "trail": true,
+    "billing-date": "2025-08-18",
+    "next-billing-date": "2025-08-20",
+    "universal-license": false,
+    "lifetime": true,
+    "valid": true
   }
 }
