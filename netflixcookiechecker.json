@@ -53,16 +53,5 @@
     "universal-license": false,
     "lifetime": true,
     "valid": true
-  },
-  "1daytest627282": {
-    "customer-name": "Samkhan",
-    "processor_id": "178BFBFF00830F10",
-    "serial_number": "0000000000000000",
-    "trail": true,
-    "billing-date": "2025-08-18",
-    "next-billing-date": "2025-08-20",
-    "universal-license": false,
-    "lifetime": true,
-    "valid": true
   }
 }
