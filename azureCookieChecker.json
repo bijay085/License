@@ -24,11 +24,11 @@
   "azure0943034jdkd": {
     "customer-name": "Saba",
     "processor_id": "0000000000000000",
-    "serial_number": "0000-0009-4020-8822-7727-5608-19",
+    "serial_number": "0000000000000000",
     "trial": false,
     "billing-date": "2025-06-14",
     "next-billing-date": "2050-09-20",
-    "universal-license": false,
+    "universal-license": true,
     "lifetime": false,
     "valid": true
   }
