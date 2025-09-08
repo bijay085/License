@@ -53,16 +53,5 @@
     "universal-license": false,
     "lifetime": true,
     "valid": true
-  },
-  "12527shs772h9": {
-    "customer-name": "xoun0",
-    "processor_id": "078BFBFF00A00F11",
-    "serial_number": "0000000000000000",
-    "trail": false,
-    "billing-date": "2025-07-30",
-    "next-billing-date": "2025-10-10",
-    "universal-license": false,
-    "lifetime": false,
-    "valid": true
   }
 }
