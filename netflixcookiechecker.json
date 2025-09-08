@@ -49,9 +49,20 @@
     "serial_number": "PF1CK9UH",
     "trail": true,
     "billing-date": "2025-07-30",
-    "next-billing-date": "2025-08-1",
+    "next-billing-date": "2025-10-1",
     "universal-license": false,
     "lifetime": true,
+    "valid": true
+  },
+  "12527shs772h9": {
+    "customer-name": "xoun0",
+    "processor_id": "078BFBFF00A00F11",
+    "serial_number": "0000000000000000",
+    "trail": true,
+    "billing-date": "2025-07-30",
+    "next-billing-date": "2025-9-1",
+    "universal-license": false,
+    "lifetime": false,
     "valid": true
   }
 }
