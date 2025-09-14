@@ -6,9 +6,9 @@
         "trial": false,
         "billing-date": "2023-01-01",
         "next-billing-date": "2025-02-20",
-        "universal-license": false,
-        "lifetime": false,
-        "valid": false
+        "universal-license": true,
+        "lifetime": true,
+        "valid": true
     },
     "outlook731899363gs": {
         "customer-name": "TgChannel",
@@ -17,8 +17,8 @@
         "trial": false,
         "billing-date": "2025-06-14",
         "next-billing-date": "2025-10-20",
-        "universal-license": false,
-        "lifetime": false,
-        "valid": false
+        "universal-license": true,
+        "lifetime": true,
+        "valid": true
     }
 }
