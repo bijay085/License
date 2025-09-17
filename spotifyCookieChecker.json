@@ -13,12 +13,12 @@
   "spotify839838": {
     "customer-name": "TgChannel",
     "processor_id": "000000000000000000",
-    "serial_number": "0000-0013-7127-6908-6938-5182-27",
+    "serial_number": "000000000000000000",
     "trail": false,
     "billing-date": "2025-06-16",
     "next-billing-date": "2025-07-20",
     "universal-license": true,
-    "lifetime": false,
+    "lifetime": true,
     "valid": true
   }
 }
