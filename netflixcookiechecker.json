@@ -1,68 +1,68 @@
 {
-  "7938bdj63n03": {
-    "customer-name": "Lucifer",
-    "processor_id": "BFEBFBFF000B0671",
-    "serial_number": "NBQQV11005442851AE3400",
-    "trail": false,
-    "billing-date": "2023-01-01",
-    "next-billing-date": "2025-02-20",
-    "universal-license": false,
-    "lifetime": true,
-    "valid": true
-  },
-  "abcd12345678": {
-    "customer-name": "Panku",
-    "processor_id": "0000000000000000",
-    "serial_number": "0000-0010-7349-2157-0901-4706-72",
-    "trail": false,
-    "billing-date": "2023-01-01",
-    "next-billing-date": "2050-01-01",
-    "universal-license": false,
-    "lifetime": true,
-    "valid": true
-  },
-  "leangphallalifetime": {
-    "customer-name": "LeangPhalla",
-    "processor_id": "BFEBFBFF000406F1",
-    "serial_number": "0000000000000000",
-    "trail": false,
-    "billing-date": "2023-01-01",
-    "next-billing-date": "2050-01-01",
-    "universal-license": false,
-    "lifetime": true,
-    "valid": true
-  },
-  "netflix98739khsjss": {
-    "customer-name": "TgChannel",
-    "processor_id": "0000000000000000",
-    "serial_number": "0000000000000000",
-    "trail": false,
-    "billing-date": "2025-06-13",
-    "next-billing-date": "2025-07-20",
-    "universal-license": true,
-    "lifetime": false,
-    "valid": true
-  },
-  "lifetimeict12345": {
-    "customer-name": "ICTSUpporter",
-    "processor_id": "BFEBFBFF000806C1",
-    "serial_number": "PF363A7J",
-    "trail": false,
-    "billing-date": "2025-09-23",
-    "next-billing-date": "2030-07-20",
-    "universal-license": true,
-    "lifetime": true,
-    "valid": true
-  },
-  "skshjkd330i3jd": {
-    "customer-name": "Samar",
-    "processor_id": "178BFBFF00810F81",
-    "serial_number": "PF1CK9UH",
-    "trail": false,
-    "billing-date": "2025-07-30",
-    "next-billing-date": "2025-10-1",
-    "universal-license": false,
-    "lifetime": true,
-    "valid": true
-  }
+    "7938bdj63n03": {
+        "customer-name": "Lucifer",
+        "processor_id": "BFEBFBFF000B0671",
+        "serial_number": "NBQQV11005442851AE3400",
+        "trail": false,
+        "billing-date": "2023-01-01",
+        "next-billing-date": "2025-02-20",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
+    },
+    "abcd12345678": {
+        "customer-name": "Panku",
+        "processor_id": "0000000000000000",
+        "serial_number": "0000-0010-7349-2157-0901-4706-72",
+        "trail": false,
+        "billing-date": "2023-01-01",
+        "next-billing-date": "2050-01-01",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
+    },
+    "leangphallalifetime": {
+        "customer-name": "LeangPhalla",
+        "processor_id": "BFEBFBFF000406F1",
+        "serial_number": "0000000000000000",
+        "trail": false,
+        "billing-date": "2023-01-01",
+        "next-billing-date": "2050-01-01",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
+    },
+    "netflix98739khsjss": {
+        "customer-name": "TgChannel",
+        "processor_id": "0000000000000000",
+        "serial_number": "0000000000000000",
+        "trail": false,
+        "billing-date": "2025-06-13",
+        "next-billing-date": "2025-07-20",
+        "universal-license": true,
+        "lifetime": false,
+        "valid": true
+    },
+    "lifetimeict12345": {
+        "customer-name": "ICTSUpporter",
+        "processor_id": "BFEBFBFF000806C1",
+        "serial_number": "PF363A7J",
+        "trail": false,
+        "billing-date": "2025-09-23",
+        "next-billing-date": "2030-07-20",
+        "universal-license": true,
+        "lifetime": true,
+        "valid": true
+    },
+    "skshjkd330i3jd": {
+        "customer-name": "Samar",
+        "processor_id": "178BFBFF00810F81",
+        "serial_number": "PF1CK9UH",
+        "trail": false,
+        "billing-date": "2025-07-30",
+        "next-billing-date": "2025-10-1",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
+    }
 }
