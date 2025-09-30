@@ -10,6 +10,17 @@
     "lifetime": true,
     "valid": true
   },
+  "cursor7893272": {
+    "customer-name": "TgChannel",
+    "processor_id": "0000000000000000",
+    "serial_number": "0000000000000000",
+    "trial": false,
+    "billing-date": "2025-06-22",
+    "next-billing-date": "2025-10-30",
+    "universal-license": true,
+    "lifetime": false,
+    "valid": true
+  },
   "kjhskhkskslkkj": {
     "customer-name": "samkhan",
     "processor_id": "078BFBFF00A00F11",
