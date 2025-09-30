@@ -31,16 +31,5 @@
     "universal-license": true,
     "lifetime": false,
     "valid": true
-  },
-  "kjhskhkskslkkj": {
-    "customer-name": "samkhan",
-    "processor_id": "078BFBFF00A00F11",
-    "serial_number": "0000000000000000",
-    "trial": true,
-    "billing-date": "2025-09-28",
-    "next-billing-date": "2025-09-30",
-    "universal-license": false,
-    "lifetime": false,
-    "valid": true
   }
 }
