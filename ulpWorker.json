@@ -9,16 +9,5 @@
         "universal-license": false,
         "lifetime": true,
         "valid": true
-    },
-    "oho123ohohoho": {
-        "customer-name": "Samar",
-        "processor_id": "178BFBFF00810F81",
-        "serial_number": "0000000000000000",
-        "trial": true,
-        "billing-date": "2025-06-30",
-        "next-billing-date": "2025-07-03",
-        "universal-license": false,
-        "lifetime": false,
-        "valid": true
     }
 }
