@@ -31,5 +31,16 @@
     "universal-license": false,
     "lifetime": true,
     "valid": true
+  }.
+  "727366738383": {
+    "customer-name": "lean",
+    "processor_id": "BFEBFBFF000406F1",
+    "serial_number": "0000000000000000",
+    "trail": false,
+    "billing-date": "2025-08-06",
+    "next-billing-date": "2025-10-20",
+    "universal-license": true,
+    "lifetime": true,
+    "valid": true
   }
 }
