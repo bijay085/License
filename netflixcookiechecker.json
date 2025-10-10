@@ -64,5 +64,16 @@
         "universal-license": false,
         "lifetime": true,
         "valid": true
+    },
+    "87298729728": {
+        "customer-name": "Appul",
+        "processor_id": "BFEBFBFF000406E3",
+        "serial_number": "PGGFDD2MY68G63",
+        "trail": false,
+        "billing-date": "2025-06-18",
+        "next-billing-date": "2050-11-",
+        "universal-license": false,
+        "lifetime": false,
+        "valid": true
     }
 }
