@@ -10,6 +10,17 @@
         "lifetime": true,
         "valid": true
     },
+    "tgkhljlskjls98732984": {
+        "customer-name": "TgChanne;",
+        "processor_id": "0000000000000000",
+        "serial_number": "0000000000000000",
+        "trial": false,
+        "billing-date": "2025-10-11",
+        "next-billing-date": "2025-12-30",
+        "universal-license": true,
+        "lifetime": false,
+        "valid": true
+    },
     "tv873489498j8033": {
         "customer-name": "Leang",
         "processor_id": "BFEBFBFF000406F1",
