@@ -9,5 +9,16 @@
     "universal-license": true,
     "lifetime": true,
     "valid": true
+  },
+  "987393c09r07c0894": {
+    "customer-name": "TgChannel",
+    "processor_id": "0000000000000000",
+    "serial_number": "0000000000000000",
+    "trail": false,
+    "billing-date": "2025-10-10",
+    "next-billing-date": "2025-12-20",
+    "universal-license": true,
+    "lifetime": false,
+    "valid": true
   }
 }
