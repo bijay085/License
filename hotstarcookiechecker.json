@@ -24,12 +24,12 @@
     "abcd12345678": {
         "customer-name": "Panku",
         "processor_id": "0000000000000000",
-        "serial_number": "0000-0010-7349-2157-0901-4706-72",
+        "serial_number": "0000-0013-4939-6387-7996-9713-42",
         "trail": false,
         "billing-date": "2025-06-13",
-        "next-billing-date": "2025-07-20",
+        "next-billing-date": "2025-012-20",
         "universal-license": false,
-        "lifetime": true,
+        "lifetime": false,
         "valid": true
     },
     "skshjkd330i3jd": {
