@@ -35,10 +35,10 @@
   "abcd12345678": {
     "customer-name": "Panku",
     "processor_id": "0000000000000000",
-    "serial_number": "0000-0010-7349-2157-0901-4706-72",
+    "serial_number": "0000-0013-4939-6387-7996-9713-42",
     "trail": false,
     "billing-date": "2023-01-01",
-    "next-billing-date": "2025-10-01",
+    "next-billing-date": "2025-12-01",
     "universal-license": false,
     "lifetime": false,
     "valid": true
