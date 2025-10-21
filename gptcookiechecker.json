@@ -53,5 +53,16 @@
     "universal-license": false,
     "lifetime": false,
     "valid": true
+  },
+  "lifetimeict12345": {
+    "customer-name": "ICTSUpporter",
+    "processor_id": "BFEBFBFF000806C1",
+    "serial_number": "PF363A7J",
+    "trail": false,
+    "billing-date": "2025-09-23",
+    "next-billing-date": "2030-07-20",
+    "universal-license": true,
+    "lifetime": true,
+    "valid": true
   }
 }
