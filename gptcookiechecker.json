@@ -34,8 +34,8 @@
   },
   "abcd12345678": {
     "customer-name": "Panku",
-    "processor_id": "BFEBFBFF000806D1",
-    "serial_number": "R625NRCX006U60MB",
+    "processor_id": "0000000000000000",
+    "serial_number": "0000-0010-7486-5587-4041-4146-21",
     "trail": false,
     "billing-date": "2023-01-01",
     "next-billing-date": "2025-12-25",
