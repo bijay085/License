@@ -32,18 +32,6 @@
     "lifetime": true,
     "valid": true
   },
-{
-  "7938bdj63n03": {
-    "customer-name": "Lucifer",
-    "processor_id": "BFEBFBFF000B0671",
-    "serial_number": "NHQQVSA00344205AD63400",
-    "trail": false,
-    "billing-date": "2023-01-01",
-    "next-billing-date": "2025-02-20",
-    "universal-license": false,
-    "lifetime": true,
-    "valid": true
-  },
   "kaizenlifetime3782": {
     "customer-name": "Kaizen",
     "processor_id": "078BFBFF00A20F12",
@@ -87,8 +75,7 @@
     "universal-license": false,
     "lifetime": false,
     "valid": true
-  }
-}
+  },
   "skshjkd330i3jd": {
     "customer-name": "Samar",
     "processor_id": "178BFBFF00810F81",
