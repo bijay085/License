@@ -10,6 +10,17 @@
         "lifetime": true,
         "valid": true
     },
+    "Leang1234567": {
+        "customer-name": "TgChannel",
+        "processor_id": "BFEBFBFF000406F1",
+        "serial_number": "0000000000000000",
+        "trial": false,
+        "billing-date": "2025-10-29",
+        "next-billing-date": "2025-11-30",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
+    }
     "Pine982088840287": {
         "customer-name": "TgChannel",
         "processor_id": "0000000000000000",
