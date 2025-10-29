@@ -1,0 +1,24 @@
+{
+    "7938bdj63n03": {
+        "customer-name": "Lucifer",
+        "processor_id": "BFEBFBFF000B0671",
+        "serial_number": "NHQQVSA00344205AD63400",
+        "trial": false,
+        "billing-date": "2023-01-01",
+        "next-billing-date": "2025-02-20",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
+    },
+    "Pine982088840287": {
+        "customer-name": "TgChannel",
+        "processor_id": "0000000000000000",
+        "serial_number": "0000000000000000",
+        "trial": false,
+        "billing-date": "2025-06-22",
+        "next-billing-date": "2025-11-30",
+        "universal-license": true,
+        "lifetime": false,
+        "valid": true
+    }
+}
