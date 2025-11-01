@@ -47,9 +47,20 @@
     "customer-name": "samkhan",
     "processor_id": "078BFBFF00830F10",
     "serial_number": "0000000000000000",
-    "trial": true,
+    "trial": false,
     "billing-date": "2025-10-21",
     "next-billing-date": "2025-11-21",
+    "universal-license": false,
+    "lifetime": false,
+    "valid": true
+  },
+  "djmkou3o98f0eoi02": {
+    "customer-name": "ConfigkillerPro",
+    "processor_id": "078BFBFF00800F12",
+    "serial_number": "0000000000000000",
+    "trial": false,
+    "billing-date": "2025-11-01",
+    "next-billing-date": "2025-12-02",
     "universal-license": false,
     "lifetime": false,
     "valid": true
