@@ -72,7 +72,7 @@
         "trail": true,
         "billing-date": "2025-11-05",
         "next-billing-date": "2025-11-07",
-        "universal-license": false,
+        "universal-license": true,
         "lifetime": false,
         "valid": true
     }
