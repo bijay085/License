@@ -64,16 +64,5 @@
     "universal-license": false,
     "lifetime": false,
     "valid": true
-  },
-  "fmpcheckerfreeday1235463": {
-    "customer-name": "fmp",
-    "processor_id": "0000000000000000",
-    "serial_number": "0000000000000000",
-    "trail": true,
-    "billing-date": "2025-11-05",
-    "next-billing-date": "2025-11-07",
-    "universal-license": true,
-    "lifetime": false,
-    "valid": true
   }
 }
