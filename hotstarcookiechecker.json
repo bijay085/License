@@ -10,6 +10,17 @@
     "lifetime": true,
     "valid": true
   },
+  "kaizenlifetime3782": {
+    "customer-name": "Kaizen",
+    "processor_id": "BFEBFBFF000806F2",
+    "serial_number": "250251365302698",
+    "trail": false,
+    "billing-date": "2023-01-01",
+    "next-billing-date": "2025-02-20",
+    "universal-license": false,
+    "lifetime": true,
+    "valid": true
+  },
   "hotstar9829802jio": {
     "customer-name": "TgChannel",
     "processor_id": "0000000000000000",
