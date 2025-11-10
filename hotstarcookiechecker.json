@@ -43,6 +43,17 @@
     "lifetime": false,
     "valid": true
   },
+  "lifetime7238787346837": {
+    "customer-name": "Xtelate",
+    "processor_id": "BFEBFBFF000306A9",
+    "serial_number": "0000000000000000",
+    "trail": false,
+    "billing-date": "2025-11-10",
+    "next-billing-date": "2025-12-20",
+    "universal-license": false,
+    "lifetime": true,
+    "valid": true
+  },
   "skshjkd330i3jd": {
     "customer-name": "Samar",
     "processor_id": "178BFBFF00810F81",
