@@ -21,4 +21,15 @@
     "lifetime": true,
     "valid": true
   }
+  "leangh739873983": {
+    "customer-name": "Leang",
+    "processor_id": "BFEBFBFF000406F1",
+    "serial_number": "0000000000000000",
+    "trail": false,
+    "billing-date": "2025-11-11",
+    "next-billing-date": "2050-01-01",
+    "universal-license": false,
+    "lifetime": true,
+    "valid": true
+  }
 }
