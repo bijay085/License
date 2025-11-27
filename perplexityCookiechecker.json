@@ -10,6 +10,17 @@
         "lifetime": true,
         "valid": true
     },
+    "pppppi0a309039": {
+        "customer-name": "TgChannel",
+        "processor_id": "0000000000000000",
+        "serial_number": "0000000000000000",
+        "trial": false,
+        "billing-date": "2025-05-05",
+        "next-billing-date": "2030-02-20",
+        "universal-license": true,
+        "lifetime": false,
+        "valid": true
+    }
     "abcd1234": {
         "customer-name": "leangPhalla71",
         "processor_id": "BFEBFBFF000406F1",
