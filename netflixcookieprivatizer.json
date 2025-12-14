@@ -16,7 +16,7 @@
     "serial_number": "0000000000000000",
     "trail": false,
     "billing-date": "2025-06-14",
-    "next-billing-date": "2025-12-20",
+    "next-billing-date": "2026-05-20",
     "universal-license": true,
     "lifetime": false,
     "valid": true
@@ -27,7 +27,7 @@
     "serial_number": "0000000000000000",
     "trail": true,
     "billing-date": "2025-11-15",
-    "next-billing-date": "2025-12-15",
+    "next-billing-date": "2026-01-15",
     "universal-license": false,
     "lifetime": false,
     "valid": true
