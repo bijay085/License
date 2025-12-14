@@ -18,7 +18,7 @@
     "billing-date": "2025-10-10",
     "next-billing-date": "2025-12-20",
     "universal-license": true,
-    "lifetime": false,
+    "lifetime": true,
     "valid": true
   },
   "abcd12345678": {
@@ -27,7 +27,7 @@
     "serial_number": "0000000000000000",
     "trail": true,
     "billing-date": "2025-11-15",
-    "next-billing-date": "2025-12-15",
+    "next-billing-date": "2026-01-15",
     "universal-license": false,
     "lifetime": false,
     "valid": true
