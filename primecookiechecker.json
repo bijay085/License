@@ -20,16 +20,5 @@
     "universal-license": true,
     "lifetime": true,
     "valid": true
-  },
-  "abcd12345678": {
-    "customer-name": "Panku",
-    "processor_id": "078BFBFF00A00F11",
-    "serial_number": "0000000000000000",
-    "trail": true,
-    "billing-date": "2025-11-15",
-    "next-billing-date": "2026-01-15",
-    "universal-license": false,
-    "lifetime": false,
-    "valid": true
   }
 }
