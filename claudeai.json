@@ -42,5 +42,16 @@
         "universal-license": false,
         "lifetime": true,
         "valid": true
+    },
+        "oifu983779984098r": {
+        "customer-name": "Anon",
+        "processor_id": "0000000000000000",
+        "serial_number": "c3eeeda5-7f4f-44f7-9924-806fe0c1dd5b",
+        "trail": true,
+        "billing-date": "2025-12-26",
+        "next-billing-date": "2025-12-28",
+        "universal-license": false,
+        "lifetime": false,
+        "valid": true
     }
 }
