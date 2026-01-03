@@ -10,17 +10,6 @@
         "lifetime": true,
         "valid": true
     },
-    "abcd12345678": {
-        "customer-name": "Panku",
-        "processor_id": "078BFBFF00A00F11",
-        "serial_number": "0000000000000000",
-        "trail": false,
-        "billing-date": "2023-01-01",
-        "next-billing-date": "2026-01-01",
-        "universal-license": false,
-        "lifetime": false,
-        "valid": true
-    },
     "leangphallalifetime": {
         "customer-name": "LeangPhalla",
         "processor_id": "BFEBFBFF000406F1",
@@ -51,17 +40,6 @@
         "billing-date": "2025-09-23",
         "next-billing-date": "2030-07-20",
         "universal-license": true,
-        "lifetime": true,
-        "valid": true
-    },
-    "skshjkd330i3jd": {
-        "customer-name": "Samar",
-        "processor_id": "178BFBFF00810F81",
-        "serial_number": "PF1CK9UH",
-        "trail": false,
-        "billing-date": "2025-07-30",
-        "next-billing-date": "2025-10-1",
-        "universal-license": false,
         "lifetime": true,
         "valid": true
     }
