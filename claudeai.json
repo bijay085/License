@@ -42,16 +42,5 @@
         "universal-license": false,
         "lifetime": true,
         "valid": true
-    },
-    "1daytest9837983": {
-        "customer-name": "Public",
-        "processor_id": "BFEBFBFF000B0671",
-        "serial_number": "0000000000000000",
-        "trial": true,
-        "billing-date": "2025-05-05",
-        "next-billing-date": "2026-01-05",
-        "universal-license": true,
-        "lifetime": false,
-        "valid": true
     }
 }
