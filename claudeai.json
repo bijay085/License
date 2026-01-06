@@ -42,5 +42,16 @@
         "universal-license": false,
         "lifetime": true,
         "valid": true
+    },
+    "fmpbooster8937203": {
+        "customer-name": "saba",
+        "processor_id": "078BFBFF00050657",
+        "serial_number": "541696972",
+        "trial": false,
+        "billing-date": "2025-05-05",
+        "next-billing-date": "2030-02-20",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
     }
 }
