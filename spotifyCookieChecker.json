@@ -21,6 +21,17 @@
     "lifetime": true,
     "valid": true
   },
+  "fmp92827197371ue89ks": {
+    "customer-name": "SonuXD",
+    "processor_id": "078BFBFF00A00F11",
+    "serial_number": "000000000000000000",
+    "trail": false,
+    "billing-date": "2026-01-06",
+    "next-billing-date": "2026-07-20",
+    "universal-license": true,
+    "lifetime": true,
+    "valid": true
+  },
   "spotifytest12342": {
     "customer-name": "Riseup1766",
     "processor_id": "BFEBFBFF000806D1",
