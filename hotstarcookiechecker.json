@@ -42,5 +42,16 @@
     "universal-license": false,
     "lifetime": true,
     "valid": true
+  },
+  "fmp12345678": {
+    "customer-name": "TGpublic",
+    "processor_id": "BFEBFBFF000306A9",
+    "serial_number": "0000000000000000",
+    "trail": true,
+    "billing-date": "2026-01-13",
+    "next-billing-date": "2026-01-15",
+    "universal-license": true,
+    "lifetime": false,
+    "valid": true
   }
 }
