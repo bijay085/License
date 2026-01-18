@@ -23,10 +23,10 @@
   },
   "fmp123mic456Testing": {
     "customer-name": "PublicTest",
-    "processor_id": "0000000000000000",
-    "serial_number": "0000000000000000",
+    "processor_id": "BFEBFBFF00050657",
+    "serial_number": "ec2956c4-a86e-f467-e456-ac8b3f43646f",
     "trail": true,
-    "billing-date": "2025-06-14",
+    "billing-date": "2026-01-01",
     "next-billing-date": "2026-01-20",
     "universal-license": true,
     "lifetime": false,
