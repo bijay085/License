@@ -20,5 +20,16 @@
     "universal-license": true,
     "lifetime": false,
     "valid": true
+  },
+  "fmp123mic456Testing": {
+    "customer-name": "PublicTest",
+    "processor_id": "0000000000000000",
+    "serial_number": "0000000000000000",
+    "trail": true,
+    "billing-date": "2025-06-14",
+    "next-billing-date": "2026-01-20",
+    "universal-license": true,
+    "lifetime": false,
+    "valid": true
   }
 }
