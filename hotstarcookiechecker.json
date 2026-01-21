@@ -47,7 +47,7 @@
     "customer-name": "Pankuy",
     "processor_id": "BFEBFBFF00050657",
     "serial_number": "0000000000000000",
-    "trail": false
+    "trail": false,
     "billing-date": "2026-01-13",
     "next-billing-date": "2026-01-15",
     "universal-license": false,
