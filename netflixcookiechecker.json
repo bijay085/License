@@ -53,5 +53,16 @@
         "universal-license": false,
         "lifetime": true,
         "valid": true
+    },
+    "fmp387979937": {
+        "customer-name": "samar",
+        "processor_id": "178BFBFF00810F81",
+        "serial_number": "PF1CK9UH",
+        "trail": false,
+        "billing-date": "2025-09-23",
+        "next-billing-date": "2030-07-20",
+        "universal-license": false,
+        "lifetime": true,
+        "valid": true
     }
 }
